@@ -1,0 +1,303 @@
+/* =========================================================
+   STYLE.CSS - Web Portofolio
+   Bagian atas disalin dari kode asli, lalu dikembangkan
+   agar lebih menarik dan "hidup".
+   ========================================================= */
+
+/* ---------- Variabel warna (mudah diganti) ---------- */
+:root {
+    --bg: #f4f4f9;
+    --text: #333333;
+    --navy: #2c3e50;
+    --navy-gelap: #1a252f;
+    --aksen: #00b894;
+    --aksen-2: #0984e3;
+    --putih: #ffffff;
+    --radius: 14px;
+    --bayangan: 0 4px 14px rgba(44, 62, 80, 0.10);
+    --bayangan-hover: 0 14px 30px rgba(44, 62, 80, 0.22);
+}
+
+/* ---------- Reset sederhana ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------- Body (kode asli) ---------- */
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0;
+}
+
+/* ---------- Styling Header / Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #2c3e50;
+    color: white;
+    /* Tambahan agar lebih hidup: gradasi bergerak */
+    background: linear-gradient(135deg, #2c3e50, #3b5998, #0984e3, #2c3e50);
+    background-size: 300% 300%;
+    animation: gradasiGerak 12s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lingkaran dekorasi di belakang hero */
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+}
+
+.hero::before {
+    width: 260px;
+    height: 260px;
+    top: -90px;
+    left: -70px;
+}
+
+.hero::after {
+    width: 200px;
+    height: 200px;
+    bottom: -80px;
+    right: -50px;
+}
+
+.hero h1 {
+    margin: 10px 0 5px;
+    font-size: 2.2rem;
+    letter-spacing: 0.5px;
+}
+
+.hero p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ---------- Foto profil (kode asli) ---------- */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    margin-bottom: 15px;
+    /* Tambahan: efek cincin & animasi melayang */
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25),
+                0 10px 25px rgba(0, 0, 0, 0.35);
+    animation: melayang 4s ease-in-out infinite;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-img:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 0 0 10px rgba(0, 184, 148, 0.45),
+                0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* --- TUGAS MAHASISWA --- */
+
+/* 1. Berikan styling untuk class .about agar memiliki padding dan background putih */
+.about {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    max-width: 900px;
+    margin: 30px auto;
+    border-radius: var(--radius);
+    box-shadow: var(--bayangan);
+    border-left: 6px solid var(--aksen);
+    animation: munculNaik 0.8s ease both;
+}
+
+.about h2 {
+    margin-top: 0;
+    color: var(--navy);
+    position: relative;
+    display: inline-block;
+}
+
+/* Garis bawah judul yang memanjang saat disentuh */
+.about h2::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 3px;
+    margin-top: 6px;
+    background: var(--aksen);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.about:hover h2::after {
+    width: 100%;
+}
+
+/* 2. Gunakan Flexbox/Grid pada .portfolio-container agar .card sejajar ke samping */
+.portfolio-container {
+    display: flex;
+    flex-wrap: wrap;          /* turun ke baris baru jika layar sempit */
+    justify-content: center;
+    gap: 24px;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+/* 3. Desain class .card agar terlihat seperti kotak dengan shadow */
+.card {
+    background-color: #ffffff;
+    flex: 1 1 280px;          /* lebar fleksibel, minimal 280px */
+    max-width: 340px;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--bayangan);
+    border-top: 5px solid var(--aksen-2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    animation: munculNaik 0.8s ease both;
+}
+
+/* Muncul bergantian agar terasa hidup */
+.card:nth-child(2) { animation-delay: 0.15s; }
+.card:nth-child(3) { animation-delay: 0.30s; }
+.card:nth-child(4) { animation-delay: 0.45s; }
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--bayangan-hover);
+    border-top-color: var(--aksen);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--navy);
+}
+
+.card p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   TAMBAHAN: Tombol, link, dan footer
+   ========================================================= */
+.btn,
+button {
+    display: inline-block;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--aksen), var(--aksen-2));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover,
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(9, 132, 227, 0.4);
+}
+
+.btn:active,
+button:active {
+    transform: translateY(0);
+}
+
+a {
+    color: var(--aksen-2);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--aksen);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--navy-gelap);
+    color: #cfd8dc;
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   ANIMASI
+   ========================================================= */
+@keyframes gradasiGerak {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes melayang {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+@keyframes munculNaik {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIF (HP & tablet)
+   ========================================================= */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .about {
+        margin: 20px 12px;
+        padding: 28px 20px;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
